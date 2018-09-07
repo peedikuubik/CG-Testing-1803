@@ -21,10 +21,14 @@
     <img class="" src="{{ product.featured_image.src | img_url: '720x720' }}" alt="{{ product.featured_image.alt }}">
   </noscript>
 
-  <h4 class="h4 product-grid__card-title">{{ product.title }}</h4>
+  <div class="product-grid__card-body">
 
-  <p class="product-grid__card-excerpt">
-    asdasd
-  </p>
+    <h4 class="h4 product-grid__card-title">{{ product.title }}</h4>
+
+    <p class="product-grid__card-excerpt">
+      {{ product.description | strip_html | truncate: 120 }}
+    </p>
+
+  </div>
 
 </div>
