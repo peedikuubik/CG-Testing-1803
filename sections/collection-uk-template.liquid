@@ -3,10 +3,6 @@
     {%- assign max_height = 530 -%}
   {% when 3 %}
     {%- assign max_height = 345 -%}
-  {% when 4 %}
-    {%- assign max_height = 250 -%}
-  {% when 5 %}
-    {%- assign max_height = 195 -%}
 {% endcase %}
 
 {% if section.settings.layout == 'grid' %}
@@ -150,10 +146,6 @@
         {%- assign grid_item_width = 'medium-up--one-half' -%}
       {% when 3 %}
         {%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
-      {% when 4 %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
-      {% when 5 %}
-        {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
       {% endcase %}
 
       <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
@@ -318,9 +310,9 @@
         "ja": "行あたりの商品数（グリッドのみ）",
         "pt-BR": "Produtos por linha (somente grade)"
       },
-      "default": 4,
-      "min": 2,
-      "max": 5,
+      "default": 3,
+      "min": 1,
+      "max": 3,
       "step": 1
     },
     {
