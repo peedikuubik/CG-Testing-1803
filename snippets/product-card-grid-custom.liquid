@@ -56,7 +56,27 @@
       </noscript>
 
       <div class="product-grid__card-body">
-        asdasdasd
+        <ul class="variant-list">
+          {% for variant in product.variants %}
+
+            {% if product.has_only_default_variant %}
+              {% assign variant_title = product.title %}
+            {% else %}
+              {% assign variant_title = variant.title %}
+            {% endif %}
+
+            {% if variant.available %}
+              <li class="variant-list__item">
+                {{ variant_title }}{% include 'icon-check' %}
+              </li>
+            {% else %}
+              <li class="variant-list__item">
+                {{ variant_title }}{% include 'icon-cross' %}
+              </li>
+            {% endif %}
+
+          {% endfor %}
+        </ul>
       </div>
 
     </div>
