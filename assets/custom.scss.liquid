@@ -5,9 +5,13 @@
 .product-grid {
   display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat( auto-fill, minmax(280px, 1fr) );
+  grid-template-columns: repeat( auto-fill, minmax(220px, 1fr) );
   grid-auto-rows: 1fr;
   grid-gap: 30px;
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat( auto-fill, minmax(280px, 1fr) );
+  }
 }
 
   .product-grid__card {
@@ -28,7 +32,8 @@
     transform-style: preserve-3d;
   }
 
-  .product-grid__card:hover .product-grid__card-flip {
+  .product-grid__card:hover .product-grid__card-flip,
+  .product-grid__card.hover .product-grid__card-flip {
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
   }
@@ -73,6 +78,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    -o-object-fit: cover;
     object-fit: cover;
   }
 
@@ -94,6 +100,38 @@
     z-index: 2;
   }
 
+  .product-grid__card-btn {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
+    padding: .5em 1em;
+    color: #fff;
+    background-color: #4bc13a;
+    -webkit-transition: background-color .25s;
+    transition: background-color .25s;
+    z-index: 20;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:not([disabled]):hover {
+      color: #fff;
+      background-color: #47aa35;
+    }
+
+    .touch-enabled & {
+      display: inline-block;
+    }
+  }
+
+  .product-grid__card-link {
+    z-index: 10;
+  }
+
 /*============================================================================
   Variant list
 ==============================================================================*/
@@ -103,7 +141,11 @@
 }
 
   .variant-list__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -126,6 +168,7 @@
 
   .wavy-lines__item {
     position: absolute;
+    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
   }
 

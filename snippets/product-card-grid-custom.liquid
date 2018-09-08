@@ -1,4 +1,4 @@
-<div class="product-grid__card{% unless product.available %} product-grid__card--sold-out{% endunless %}" ontouchstart="this.classList.toggle('hover');">
+<div class="product-grid__card{% unless product.available %} product-grid__card--sold-out{% endunless %} js-card-flip">
 
   {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
@@ -13,11 +13,12 @@
 
     <div class="product-grid__card-side product-grid__card-side--front">
 
-      <a class="full-width-link" href="{{ product.url | within: collection }}">
+      <a class="product-grid__card-link full-width-link js-card-link" href="{{ product.url | within: collection }}">
         <span class="visually-hidden">{{ product.title }}</span>
       </a>
 
       <div class="product-grid__image-wrapper">
+
         <img
           class="product-grid__image lazyload"
           src="{{ product.featured_image | img_url: '360x360' }}"
@@ -25,12 +26,13 @@
           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
           data-aspectratio="{{ product.featured_image.aspect_ratio }}"
           data-sizes="auto"
-          alt="">
-      </div>
+          alt="{{ product.featured_image.alt }}">
 
-      <noscript>
-        <img class="" src="{{ product.featured_image.src | img_url: '720x720' }}" alt="{{ product.featured_image.alt }}">
-      </noscript>
+        <noscript>
+          <img class="product-grid__image" src="{{ product.featured_image.src | img_url: '720x720' }}" alt="{{ product.featured_image.alt }}">
+        </noscript>
+
+      </div>
 
       <div class="product-grid__card-body">
         <h4 class="h4 product-grid__card-title">{{ product.title }}</h4>
@@ -43,11 +45,13 @@
 
     <div class="product-grid__card-side product-grid__card-side--back">
 
-      <a class="full-width-link" href="{{ product.url | within: collection }}">
+      <a class="product-grid__card-link full-width-link js-card-link" href="{{ product.url | within: collection }}">
         <span class="visually-hidden">{{ product.title }}</span>
       </a>
 
       <div class="product-grid__image-wrapper">
+
+        <a class="product-grid__card-btn js-touch-btn" href="{{ product.url | within: collection }}">See product</a>
 
         <div class="product-grid__wave-container wavy-lines">
           {% assign left = -30 %}
@@ -69,13 +73,13 @@
           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
           data-aspectratio="{{ product.featured_image.aspect_ratio }}"
           data-sizes="auto"
-          alt="">
+          alt="{{ product.featured_image.alt }}">
+
+        <noscript>
+          <img class="product-grid__image" src="{{ product.featured_image.src | img_url: '720x720' }}" alt="{{ product.featured_image.alt }}">
+        </noscript>
 
       </div>
-
-      <noscript>
-        <img class="" src="{{ product.featured_image.src | img_url: '720x720' }}" alt="{{ product.featured_image.alt }}">
-      </noscript>
 
       <div class="product-grid__card-body">
         <ul class="variant-list">
