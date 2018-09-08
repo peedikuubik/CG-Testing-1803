@@ -2,6 +2,13 @@
 
   {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
+  {% assign nr_of_lines = 0 %}
+  {% for variant in product.variants %}
+    {% unless variant.available %}
+      {% assign nr_of_lines = nr_of_lines | plus: 1 %}
+    {% endunless %}
+  {% endfor %}
+
   <div class="product-grid__card-flip">
 
     <div class="product-grid__card-side product-grid__card-side--front">
@@ -41,6 +48,20 @@
       </a>
 
       <div class="product-grid__image-wrapper">
+
+        <div class="product-grid__wave-container wavy-lines">
+          {% assign left = -30 %}
+          {% assign top = 50 %}
+          {% for i in (1..nr_of_lines) %}
+            <div class="wavy-lines__item" style="left: {{ left }}%; top: {{ top }}%;">
+              <div class="wavy-lines__element"></div>
+              <div class="wavy-lines__element wavy-lines__element--2"></div>
+            </div>
+            {% assign left = left | plus: 10 %}
+            {% assign top = top | plus: 10 %}
+          {% endfor %}
+        </div>
+
         <img
           class="product-grid__image lazyload"
           src="{{ product.featured_image | img_url: '360x360' }}"
@@ -49,6 +70,7 @@
           data-aspectratio="{{ product.featured_image.aspect_ratio }}"
           data-sizes="auto"
           alt="">
+
       </div>
 
       <noscript>

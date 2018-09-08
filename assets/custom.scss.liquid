@@ -85,6 +85,15 @@
     flex: 1;
   }
 
+  .product-grid__wave-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65%;
+    height: 65%;
+    z-index: 2;
+  }
+
 /*============================================================================
   Variant list
 ==============================================================================*/
@@ -106,3 +115,30 @@
     height: 16px;
     margin-left: auto;
   }
+
+/*============================================================================
+  Wavy lines
+==============================================================================*/
+
+.wavy-lines {
+  overflow: hidden;
+}
+
+  .wavy-lines__item {
+    position: absolute;
+    transform: rotate(-45deg);
+  }
+
+  .wavy-lines__element {
+    position: absolute;
+    background: radial-gradient(ellipse, transparent, transparent 7px, black 7px, black 10px, transparent 11px);
+    background-size: 36px 40px;
+    width: 400px;
+    height: 20px;
+  }
+
+    .wavy-lines__element--2 {
+      top: 20px;
+      left: 18px;
+      background-position: 0px -20px;
+    }
