@@ -3,11 +3,8 @@
 ==============================================================================*/
 
 .product-grid {
-  // display: -ms-grid;
   display: grid;
-  // -ms-grid-columns: (1fr)[3];
   grid-template-columns: repeat( auto-fill, minmax(280px, 1fr) );
-  // -ms-grid-rows: 1fr;
   grid-auto-rows: 1fr;
   grid-gap: 30px;
 }
@@ -15,8 +12,6 @@
   .product-grid__card {
     position: relative;
     height: 100%;
-    display: flex;
-    flex-direction: column;
   }
 
   .product-grid__card-body {
@@ -24,6 +19,44 @@
     border-top: none;
     padding: 20px;
     flex: 1;
+  }
+
+  .product-grid__card-flip {
+    position: relative;
+    height: 100%;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .product-grid__card-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .product-grid__card-side--front {
+    position: relative;
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .product-grid__card-side--back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-180deg);
+  }
+
+  .product-grid__card:hover .product-grid__card-side--front {
+    transform: rotateY(180deg);
+  }
+
+  .product-grid__card:hover .product-grid__card-side--back {
+    transform: rotateY(0deg);
   }
 
   .product-grid__image-wrapper {
